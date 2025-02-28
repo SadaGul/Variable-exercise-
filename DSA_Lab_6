@@ -1,0 +1,307 @@
+
+QNo1: Program to find the number of elements in a linked list?
+
+#include <iostream>
+using namespace std;
+
+class Node {
+public:
+    int data;
+    Node* next;
+    
+    Node(int val) {
+        data = val;
+        next = NULL;
+    }
+};
+
+class LinkedList {
+public:
+    Node* head;
+    
+    LinkedList() {
+        head = NULL;
+    }
+
+    void append(int val) {
+        Node* newNode = new Node(val);
+        if (head == NULL) {
+            head = newNode;
+            return;
+        }
+        Node* temp = head;
+        while (temp->next != NULL) {
+            temp = temp->next;
+        }
+        temp->next = newNode;
+    }
+
+    int countNodes() {
+        int count = 0;
+        Node* temp = head;
+        while (temp != NULL) {
+            count++;
+            temp = temp->next;
+        }
+        return count;
+    }
+};
+
+int main() {
+    LinkedList ll;
+    ll.append(10);
+    ll.append(20);
+    ll.append(30);
+    cout << "Number of elements in the linked list: " << ll.countNodes() << endl;
+    return 0;
+}
+
+
+QNo2: Program to insert a new node at the beginning of a linked list?
+
+#include <iostream>
+using namespace std;
+
+class Node {
+public:
+    int data;
+    Node* next;
+    
+    Node(int val) {
+        data = val;
+        next = NULL;
+    }
+};
+
+class LinkedList {
+public:
+    Node* head;
+    
+    LinkedList() {
+        head = NULL;
+    }
+
+    void insertAtBeginning(int val) {
+        Node* newNode = new Node(val);
+        newNode->next = head;
+        head = newNode;
+    }
+
+    void display() {
+        Node* temp = head;
+        while (temp != NULL) {
+            cout << temp->data << " -> ";
+            temp = temp->next;
+        }
+        cout << "NULL" << endl;
+    }
+};
+
+int main() {
+    LinkedList ll;
+    ll.insertAtBeginning(30);
+    ll.insertAtBeginning(20);
+    ll.insertAtBeginning(10);
+    ll.display();
+    return 0;
+}
+
+
+QNo3: Program to insert a new node at a given position in a linked list?
+
+#include <iostream>
+using namespace std;
+
+class Node {
+public:
+    int data;
+    Node* next;
+    
+    Node(int val) {
+        data = val;
+        next = NULL;
+    }
+};
+
+class LinkedList {
+public:
+    Node* head;
+    
+    LinkedList() {
+        head = NULL;
+    }
+
+    void insertAtPosition(int val, int pos) {
+        Node* newNode = new Node(val);
+        if (pos == 0) {
+            newNode->next = head;
+            head = newNode;
+            return;
+        }
+        Node* temp = head;
+        for (int i = 0; i < pos - 1 && temp != NULL; i++) {
+            temp = temp->next;
+        }
+        if (temp == NULL) {
+            cout << "Position out of bounds" << endl;
+            return;
+        }
+        newNode->next = temp->next;
+        temp->next = newNode;
+    }
+
+    void display() {
+        Node* temp = head;
+        while (temp != NULL) {
+            cout << temp->data << " -> ";
+            temp = temp->next;
+        }
+        cout << "NULL" << endl;
+    }
+};
+
+int main() {
+    LinkedList ll;
+    ll.insertAtPosition(10, 0);
+    ll.insertAtPosition(20, 1);
+    ll.insertAtPosition(15, 1);
+    ll.display();
+    return 0;
+}
+
+
+QNo4: Program to find the location of the last node in a sorted list?
+
+#include <iostream>
+using namespace std;
+
+class Node {
+public:
+    int data;
+    Node* next;
+    
+    Node(int val) {
+        data = val;
+        next = NULL;
+    }
+};
+
+class LinkedList {
+public:
+    Node* head;
+    
+    LinkedList() {
+        head = NULL;
+    }
+
+    void append(int val) {
+        Node* newNode = new Node(val);
+        if (head == NULL) {
+            head = newNode;
+            return;
+        }
+        Node* temp = head;
+        while (temp->next != NULL) {
+            temp = temp->next;
+        }
+        temp->next = newNode;
+    }
+
+    int findLastNodePosition() {
+        if (head == NULL)
+            return -1;
+        int position = 0;
+        Node* temp = head;
+        while (temp->next != NULL) {
+            position++;
+            temp = temp->next;
+        }
+        return position;
+    }
+};
+
+int main() {
+    LinkedList ll;
+    ll.append(10);
+    ll.append(20);
+    ll.append(30);
+    cout << "Last node is at position: " << ll.findLastNodePosition() << endl;
+    return 0;
+}
+
+
+QNo5: Program to delete a node from a linked list?
+
+#include <iostream>
+using namespace std;
+
+class Node {
+public:
+    int data;
+    Node* next;
+    
+    Node(int val) {
+        data = val;
+        next = NULL;
+    }
+};
+
+class LinkedList {
+public:
+    Node* head;
+    
+    LinkedList() {
+        head = NULL;
+    }
+
+    void append(int val) {
+        Node* newNode = new Node(val);
+        if (head == NULL) {
+            head = newNode;
+            return;
+        }
+        Node* temp = head;
+        while (temp->next != NULL) {
+            temp = temp->next;
+        }
+        temp->next = newNode;
+    }
+
+    void deleteNode(int key) {
+        Node* temp = head;
+        if (temp != NULL && temp->data == key) {
+            head = temp->next;
+            delete temp;
+            return;
+        }
+        Node* prev = NULL;
+        while (temp != NULL && temp->data != key) {
+            prev = temp;
+            temp = temp->next;
+        }
+        if (temp == NULL)
+            return;
+        prev->next = temp->next;
+        delete temp;
+    }
+
+    void display() {
+        Node* temp = head;
+        while (temp != NULL) {
+            cout << temp->data << " -> ";
+            temp = temp->next;
+        }
+        cout << "NULL" << endl;
+    }
+};
+
+int main() {
+    LinkedList ll;
+    ll.append(10);
+    ll.append(20);
+    ll.append(30);
+    ll.display();
+    ll.deleteNode(20);
+    ll.display();
+    return 0;
+}
