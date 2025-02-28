@@ -1,0 +1,86 @@
+Q_No_1: Explain the procedure of Queue implementation using linked list?
+
+Queue Implementation Using Linked List
+
+A Queue is a linear data structure that follows the FIFO (First In, First Out) principle. When implementing a queue using a linked list, we use two pointers:
+
+1. Front → Points to the first element of the queue (dequeue happens here).
+
+
+2. Rear → Points to the last element of the queue (enqueue happens here).
+
+
+
+Queue Operations Using Linked List
+
+1. Enqueue (Insertion at Rear)
+
+Create a new node.
+
+If the queue is empty (front == NULL), set front = rear = new node.
+Otherwise, set rear->next = new node and update rear = new node.
+
+2. Dequeue (Deletion from Front)
+If the queue is empty (front == NULL), print "Queue is empty".
+
+Otherwise, store front in a temporary pointer.
+Move front to the next node.
+
+If front becomes NULL, set rear = NULL (queue becomes empty).
+
+Delete the old front node.
+
+
+3. Display (Printing the Queue)
+
+Start from front and traverse using a loop.
+
+Print all node values until NULL is reached.
+
+QNo2 : C++ Program to Implement the Queue using Linked List?
+
+#include <iostream>
+using namespace std;
+
+struct Node {
+    int data;
+    Node* next;
+    Node(int val) : data(val), next(NULL) {}
+};
+
+struct Queue {
+    Node *front, *rear;
+    Queue() : front(NULL), rear(NULL) {}
+
+    void enqueue(int val) {
+        Node* temp = new Node(val);
+        if (!front) front = rear = temp;  // If queue is empty
+        else rear->next = temp, rear = temp;
+    }
+
+    void dequeue() {
+        if (!front) { 
+            cout << "Queue is empty!\n"; 
+            return; 
+        }
+        Node* temp = front;
+        front = front->next;
+        if (!front) rear = NULL;
+        delete temp;
+    }
+
+    void display() {
+        for (Node* temp = front; temp; temp = temp->next)
+            cout << temp->data << " -> ";
+        cout << "NULL\n";
+    }
+};
+
+int main() {
+    Queue q;
+    q.enqueue(10);
+    q.enqueue(20);
+    q.enqueue(30);
+    cout << "Queue: "; q.display();
+    q.dequeue();
+}
