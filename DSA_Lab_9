@@ -1,0 +1,72 @@
+
+
+QNo1: Implement the Linear Search algorithm using a function in C++?
+
+     C++ Program: Linear Search
+
+#include <iostream>
+using namespace std;
+
+// Function to perform Linear Search
+int linearSearch(int arr[], int size, int key) {
+    for (int i = 0; i < size; i++) {
+        if (arr[i] == key) {
+            return i; // Return the index if found
+        }
+    }
+    return -1; // Return -1 if not found
+}
+
+int main() {
+    int arr[] = {10, 20, 30, 40, 50};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    int key;
+
+    cout << "Enter the element to search: ";
+    cin >> key;
+
+    int result = linearSearch(arr, size, key);
+
+    if (result != -1) {
+        cout << "Element found at index: " << result << endl;
+    } else {
+        cout << "Element not found in the array." << endl;
+    }
+
+    return 0;
+}
+
+
+QNo2:Implement Linear Search with duplicate elements in C++?
+
+#include <iostream>
+using namespace std;
+
+// Function to perform Linear Search and find all occurrences
+void linearSearchDuplicates(int arr[], int size, int key) {
+    bool found = false;
+    cout << "Element found at index(es): ";
+    for (int i = 0; i < size; i++) {
+        if (arr[i] == key) {
+            cout << i << " ";
+            found = true;
+        }
+    }
+    if (!found) {
+        cout << "Element not found in the array.";
+    }
+    cout << endl;
+}
+
+int main() {
+    int arr[] = {10, 20, 30, 40, 20, 50, 20};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    int key;
+
+    cout << "Enter the element to search: ";
+    cin >> key;
+
+    linearSearchDuplicates(arr, size, key);
+
+    return 0;
+}
